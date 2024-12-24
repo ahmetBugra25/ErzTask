@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="iller">
+        <item>Adana</item>
+        <item>Adıyaman</item>
+        <item>Afyonkarahisar</item>
+        <item>Ağrı</item>
+        <item>Amasya</item>
+        <item>Ankara</item>
+        <item>Antalya</item>
+        <item>Artvin</item>
+        <item>Aydın</item>
+        <item>Balıkesir</item>
+        <item>Bilecik</item>
+        <item>Bingöl</item>
+        <item>Bitlis</item>
+        <item>Bolu</item>
+        <item>Burdur</item>
+        <item>Bursa</item>
+        <item>Çanakkale</item>
+        <item>Çankırı</item>
+        <item>Çorum</item>
+        <item>Denizli</item>
+        <item>Diyarbakır</item>
+        <item>Edirne</item>
+        <item>Elazığ</item>
+        <item>Erzincan</item>
+        <item>Erzurum</item>
+        <item>Eskişehir</item>
+        <item>Gaziantep</item>
+        <item>Giresun</item>
+        <item>Gümüşhane</item>
+        <item>Hakkâri</item>
+        <item>Hatay</item>
+        <item>Iğdır</item>
+        <item>Isparta</item>
+        <item>İstanbul</item>
+        <item>İzmir</item>
+        <item>Kahramanmaraş</item>
+        <item>Karabük</item>
+        <item>Karaman</item>
+        <item>Kars</item>
+        <item>Kastamonu</item>
+        <item>Kayseri</item>
+        <item>Kırıkkale</item>
+        <item>Kırklareli</item>
+        <item>Kırşehir</item>
+        <item>Kilis</item>
+        <item>Kocaeli</item>
+        <item>Konya</item>
+        <item>Kütahya</item>
+        <item>Malatya</item>
+        <item>Manisa</item>
+        <item>Mardin</item>
+        <item>Mersin</item>
+        <item>Muğla</item>
+        <item>Muş</item>
+        <item>Nevşehir</item>
+        <item>Niğde</item>
+        <item>Ordu</item>
+        <item>Osmaniye</item>
+        <item>Rize</item>
+        <item>Sakarya</item>
+        <item>Samsun</item>
+        <item>Siirt</item>
+        <item>Sinop</item>
+        <item>Sivas</item>
+        <item>Şanlıurfa</item>
+        <item>Şırnak</item>
+        <item>Tekirdağ</item>
+        <item>Tokat</item>
+        <item>Trabzon</item>
+        <item>Tunceli</item>
+        <item>Uşak</item>
+        <item>Van</item>
+        <item>Yalova</item>
+        <item>Yozgat</item>
+        <item>Zonguldak</item>
+    </string-array>
+    <string-array name="Takimlar">
+        <item>Mobil - A</item>
+        <item>Mobil - B</item>
+        <item>Web - A</item>
+        <item>Web - B</item>
+        <item>IsAnalist - A</item>
+        <item>IsAnalist - B</item>
+        <item>Veritabanı - A</item>
+        <item>Veritabanı - B</item>
+        <item>DevOps - A</item>
+        <item>DevOps - B</item>
+        <item>Insan Kaynakları</item>
+        <item>Idari Kadro</item>
+    </string-array>
+    <string-array name="Unvanlar">
+        <item>Senior Mobil Developer</item>
+        <item>Mid/Level Mobil Developer</item>
+        <item>Junior Mobil Developer</item>
+        <item>Senior Mobil Developer Takım Kaptanı</item>
+        <item>Senior Web Developer</item>
+        <item>Mid/Level Web Developer</item>
+        <item>Junior Web Developer</item>
+        <item>Senior Web Developer Takım Kaptanı</item>
+        <item>Senior IsAnalisti</item>
+        <item>Mid/Level IsAnalisti</item>
+        <item>Junior IsAnalisti</item>
+        <item>Senior IsAnalisti Takım Kaptanı</item>
+        <item>Senior DevOps Developer</item>
+        <item>Mid/Level DevOps Developer</item>
+        <item>Junior DevOps Developer</item>
+        <item>Senior DevOps Developer Takım Kaptanı</item>
+        <item>Senior Veritabanı Developer</item>
+        <item>Mid/Level Veritabanı Developer</item>
+        <item>Junior Veritabanı Developer</item>
+        <item>Senior Mobil Developer Takım Kaptanı</item>
+    </string-array>
+
+    <string-array name="CalismaSekli">
+        <item>Uzaktan</item>
+        <item>Ofisten</item>
+    </string-array>
+</resources>
