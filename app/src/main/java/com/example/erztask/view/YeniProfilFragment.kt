@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
+import androidx.navigation.Navigation
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentSigInBinding
 import com.example.erztask.databinding.FragmentYeniProfilBinding
@@ -20,11 +24,12 @@ class YeniProfilFragment : Fragment() {
     private val binding get() = _binding!!
 
     private  lateinit var auth: FirebaseAuth
-    private val query:Query?=null
+    private lateinit var query:Query
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth=Firebase.auth
+
     }
 
     override fun onCreateView(
@@ -38,35 +43,44 @@ class YeniProfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        SpinnerIlIcerigi()
-        SpinnerTakim()
-
+        query=Query()
+        Spinner(binding.Ilspinner,view,R.array.iller)
+        Spinner(binding.UnvanSpinner,view,R.array.Unvanlar)
+        Spinner(binding.CalismaSekliSpinner,view,R.array.CalismaSekli)
+        Spinner(binding.TakimSpinner,view,R.array.Takimlar)
+        binding.ProfilEkleBtn.setOnClickListener { UyeEkle(it)}
     }
-    public fun ProfilOlustur(view: View){
+    fun UyeEkle(view: View){
+        val email=binding.editEmail.text.toString()
+        val sifre = binding.editPassword.text.toString()
+        val name = binding.editName.text.toString()
+        val bulunduguTakim=binding.TakimSpinner.selectedItem.toString()
+        val uyeUnvani=binding.UnvanSpinner.selectedItem.toString()
+        val uyeCalismaSekli=binding.CalismaSekliSpinner.selectedItem.toString()
+         query?.let {
+             query.ProfilOlusturma(email,sifre,name,bulunduguTakim,uyeUnvani,uyeCalismaSekli){isSucces->
+                 if (isSucces==true){
+                     Toast.makeText(requireContext(),"KullanıcıKaydı Başarılı",Toast.LENGTH_SHORT).show()
+                     val action = YeniProfilFragmentDirections.actionYeniProfilFragmentToMainPageFragment()
+                     Navigation.findNavController(view).navigate(action)
+                 }else{
+                     Toast.makeText(requireContext(),"KullanıcıKaydı Başarısız Oldu",Toast.LENGTH_SHORT).show()
 
+                 }
+             }
+         }
     }
 
-    private fun SpinnerIlIcerigi(){
-        val spinner = binding.Ilspinner
+    fun Spinner(spinner: Spinner, view: View,textViewResId:Int){
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
-            R.array.iller,
+            textViewResId,
             android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
     }
-    private fun SpinnerTakim(){
-        val spinner = binding.TakimSpinner
-        val adapter = ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.iller,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-    }
-    private  fun
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
