@@ -45,5 +45,11 @@ class Query {
                 callback(false)
             }
     }
+    fun HataKontrol(
+        HataninYeri:String,
+        HataSatiri:String,
+        HataninAciklamasi:String
+    ){
 
+    }
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentMainPageBinding
 import com.example.erztask.helper.Gecis
@@ -36,11 +37,14 @@ class MainPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        println("MainPageAçıldı")
         GecisHelper=Gecis()
-        GecisHelper.let {
-            binding.ProfilimBtn.setOnClickListener { GecisHelper.MaintoProfilim(view)}
-        }
-
+        binding.ProfilimBtn.setOnClickListener {GecisHelper.MainToProfilim(view)}
+        binding.KisilerBtn.setOnClickListener { GecisHelper.MainToKisiler(view) }
+        binding.SohbetOdasiBtn.setOnClickListener { GecisHelper.MainToSohbetOdasi(view) }
+        binding.BitenGorevlerBtn.setOnClickListener { GecisHelper.MainToBitenGorevler(view) }
+        binding.TumGorevlerBtn.setOnClickListener { GecisHelper.MainToTumGorevler(view) }
+        binding.CikisYapBtn.setOnClickListener {  GecisHelper.MainappQuit(view)}
 
     }
     override fun onDestroyView() {

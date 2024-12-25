@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_profilim"
             app:destination="@id/profilim" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_sigInFragment"
+            app:destination="@id/sigInFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminPaneliFragment"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_adminPaneliFragment_to_yeniProfilFragment"
             app:destination="@id/yeniProfilFragment" />
+        <action
+            android:id="@+id/action_adminPaneliFragment_to_sigInFragment"
+            app:destination="@id/sigInFragment" />
     </fragment>
     <fragment
         android:id="@+id/yeniProfilFragment"
@@ -41,8 +47,8 @@
         android:label="fragment_yeni_profil"
         tools:layout="@layout/fragment_yeni_profil" >
         <action
-            android:id="@+id/action_yeniProfilFragment_to_mainPageFragment"
-            app:destination="@id/mainPageFragment" />
+            android:id="@+id/action_yeniProfilFragment_to_adminPaneliFragment"
+            app:destination="@id/adminPaneliFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilim"

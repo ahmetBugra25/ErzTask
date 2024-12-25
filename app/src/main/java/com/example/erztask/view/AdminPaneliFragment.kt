@@ -9,12 +9,14 @@ import androidx.navigation.Navigation
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentAdminPaneliBinding
 import com.example.erztask.databinding.FragmentMainPageBinding
+import com.example.erztask.helper.Gecis
 
 
 class AdminPaneliFragment : Fragment() {
 
     private var _binding: FragmentAdminPaneliBinding? = null
     private val binding get() = _binding!!
+    private lateinit var gecis:Gecis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +34,9 @@ class AdminPaneliFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gecis=Gecis()
         binding.adminProfil.setOnClickListener {
-            val action = AdminPaneliFragmentDirections.actionAdminPaneliFragmentToYeniProfilFragment()
-            Navigation.findNavController(view).navigate(action)
+            gecis.AdminPaneliToProfil(view)
         }
 
     }

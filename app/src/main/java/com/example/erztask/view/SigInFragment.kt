@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentSigInBinding
+import com.example.erztask.helper.Gecis
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -20,6 +21,8 @@ class SigInFragment : Fragment() {
     private val binding get() = _binding!!
 
     private  lateinit var auth: FirebaseAuth
+
+    private lateinit var gecis: Gecis
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +41,7 @@ class SigInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gecis=Gecis()
         binding.GirisYap.setOnClickListener { GirisYap(it) }
 
     }
@@ -47,11 +51,9 @@ class SigInFragment : Fragment() {
         if (email.isNotEmpty() && pass.isNotEmpty()){
             auth.signInWithEmailAndPassword(email,pass).addOnSuccessListener { task ->
                 if (binding.editEmail.text.toString()=="admin@erz.com"){
-                    val action = SigInFragmentDirections.actionSigInFragmentToAdminPaneliFragment()
-                    Navigation.findNavController(view).navigate(action)
+                    gecis.SignInToAdmin(view)
                 }else{
-                    val action = SigInFragmentDirections.actionSigInFragmentToMainPageFragment()
-                    Navigation.findNavController(view).navigate(action)
+                    gecis.SignInToMain(view)
                 }
 
             }.addOnFailureListener { Exception ->

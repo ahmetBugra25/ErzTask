@@ -14,6 +14,8 @@ import com.example.erztask.R
 import com.example.erztask.databinding.FragmentSigInBinding
 import com.example.erztask.databinding.FragmentYeniProfilBinding
 import com.example.erztask.dbQuery.Query
+import com.example.erztask.helper.Gecis
+import com.example.erztask.helper.SpinnerHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,6 +27,8 @@ class YeniProfilFragment : Fragment() {
 
     private  lateinit var auth: FirebaseAuth
     private lateinit var query:Query
+    private lateinit var gecis: Gecis
+    private lateinit var spinner: SpinnerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +48,12 @@ class YeniProfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         query=Query()
-        Spinner(binding.Ilspinner,view,R.array.iller)
-        Spinner(binding.UnvanSpinner,view,R.array.Unvanlar)
-        Spinner(binding.CalismaSekliSpinner,view,R.array.CalismaSekli)
-        Spinner(binding.TakimSpinner,view,R.array.Takimlar)
+        gecis=Gecis()
+        spinner=SpinnerHelper()
+        spinner.Spin(binding.Ilspinner,view,R.array.iller)
+        spinner.Spin(binding.UnvanSpinner,view,R.array.Unvanlar)
+        spinner.Spin(binding.CalismaSekliSpinner,view,R.array.CalismaSekli)
+        spinner.Spin(binding.TakimSpinner,view,R.array.Takimlar)
         binding.ProfilEkleBtn.setOnClickListener { UyeEkle(it)}
     }
     fun UyeEkle(view: View){
@@ -61,8 +67,7 @@ class YeniProfilFragment : Fragment() {
              query.ProfilOlusturma(email,sifre,name,bulunduguTakim,uyeUnvani,uyeCalismaSekli){isSucces->
                  if (isSucces==true){
                      Toast.makeText(requireContext(),"KullanıcıKaydı Başarılı",Toast.LENGTH_SHORT).show()
-                     val action = YeniProfilFragmentDirections.actionYeniProfilFragmentToMainPageFragment()
-                     Navigation.findNavController(view).navigate(action)
+                     gecis.YeniProfilToAdminPaneli(view)
                  }else{
                      Toast.makeText(requireContext(),"KullanıcıKaydı Başarısız Oldu",Toast.LENGTH_SHORT).show()
 
@@ -71,15 +76,6 @@ class YeniProfilFragment : Fragment() {
          }
     }
 
-    fun Spinner(spinner: Spinner, view: View,textViewResId:Int){
-        val adapter = ArrayAdapter.createFromResource(
-            requireContext(),
-            textViewResId,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

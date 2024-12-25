@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentMainPageBinding
+import com.example.erztask.databinding.FragmentProfilimBinding
+import com.example.erztask.databinding.FragmentYeniProfilBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
 class Profilim : Fragment() {
-    private var _binding: FragmentMainPageBinding? = null
+    private var _binding: FragmentProfilimBinding? = null
     private val binding get() = _binding!!
 
     private  lateinit var auth: FirebaseAuth
@@ -26,7 +28,7 @@ class Profilim : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMainPageBinding.inflate(inflater, container, false)
+        _binding = FragmentProfilimBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
