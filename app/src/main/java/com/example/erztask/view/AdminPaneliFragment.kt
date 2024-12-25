@@ -35,9 +35,8 @@ class AdminPaneliFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gecis=Gecis()
-        binding.adminProfil.setOnClickListener {
-            gecis.AdminPaneliToProfil(view)
-        }
+        binding.adminProfil.setOnClickListener { gecis.AdminPaneliToProfil(view) }
+        binding.adminCKSYap.setOnClickListener { gecis.AdminAppQuit(view) }
 
     }
 

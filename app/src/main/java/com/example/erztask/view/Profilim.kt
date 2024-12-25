@@ -5,11 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentMainPageBinding
 import com.example.erztask.databinding.FragmentProfilimBinding
 import com.example.erztask.databinding.FragmentYeniProfilBinding
+import com.example.erztask.dbQuery.Query
+import com.example.erztask.helper.SpinnerHelper
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 
 class Profilim : Fragment() {
@@ -18,10 +24,13 @@ class Profilim : Fragment() {
 
     private  lateinit var auth: FirebaseAuth
 
+    private lateinit var spinner:SpinnerHelper
+    private lateinit var query: Query
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        auth=Firebase.auth
     }
 
     override fun onCreateView(
@@ -35,7 +44,46 @@ class Profilim : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        spinner = SpinnerHelper()
+        query = Query()
+        val currentUserEmail = auth.currentUser!!.email.toString()
+        BtnEnabledControl(currentUserEmail)
+        SpinnerCagrisi(view)
+        binding.BtnGeri.setOnClickListener { findNavController().popBackStack() }
+        binding.UyeGuncelleBtn.setOnClickListener {
 
+
+        }
+    }
+    fun SpinnerCagrisi(view: View){
+        spinner=SpinnerHelper()
+        spinner.Spin(binding.PilSpinner,view,R.array.iller)
+        spinner.Spin(binding.PUnvani,view,R.array.Unvanlar)
+        spinner.Spin(binding.PCalismaSekli,view,R.array.CalismaSekli)
+        spinner.Spin(binding.PBulunduguTakim,view,R.array.Takimlar)
+    }
+    fun BtnEnabledControl(currentUserEmail:String){
+        if (currentUserEmail=="admin@erz.com"){
+            binding.PeditName.isEnabled=true
+            binding.PeditEmail.isEnabled=true
+            binding.PilSpinner.isEnabled=true
+            binding.PCalismaSekli.isEnabled=true
+            binding.PBulunduguTakim.isEnabled=true
+            binding.PUnvani.isEnabled=true
+            binding.UyeGuncelleBtn.isEnabled=true
+            binding.UyeGuncelleBtn.isVisible=true
+
+        }else{
+            binding.PeditName.isEnabled=false
+            binding.PeditEmail.isEnabled=false
+            binding.PilSpinner.isEnabled=false
+            binding.PCalismaSekli.isEnabled=false
+            binding.PBulunduguTakim.isEnabled=false
+            binding.PUnvani.isEnabled=false
+            binding.UyeGuncelleBtn.isEnabled=false
+            binding.UyeGuncelleBtn.isVisible=false
+
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

@@ -11,7 +11,7 @@ import com.example.erztask.view.YeniProfilFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 
 class Gecis {
-    private  lateinit var auth: FirebaseAuth
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var query: Query
 
     fun SignInToAdmin(view: View){
@@ -20,7 +20,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         } catch (e: Exception) {
             query=Query()
-            query.HataKontrol("Gecis Class - SignInToAdmin","22",e.toString())
+            query.HataKontrol("Gecis Class - SignInToAdmin","22",e.toString(),view)
         }
     }
     fun SignInToMain(view: View){
@@ -29,7 +29,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         } catch (e: Exception) {
             query=Query()
-            query.HataKontrol("Gecis Class - SigInToMain","31",e.toString())
+            query.HataKontrol("Gecis Class - SigInToMain","31",e.toString(),view)
         }
     }
     fun MainToProfilim(view:View){
@@ -38,7 +38,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         } catch (e: Exception) {
             query=Query()
-            query.HataKontrol("Gecis Class - MainToProfilim","40",e.toString())
+            query.HataKontrol("Gecis Class - MainToProfilim","40",e.toString(),view)
         }
     }
     fun MainToKisiler(view: View){
@@ -57,7 +57,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         }catch (e:Exception){
             query=Query()
-            query.HataKontrol("Gecis Class - MainAppQuit","48",e.toString())
+            query.HataKontrol("Gecis Class - MainAppQuit","48",e.toString(),view)
         }
 
     }
@@ -68,7 +68,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         }catch (e:Exception){
             query=Query()
-            query.HataKontrol("Gecis Clası","53",e.toString())
+            query.HataKontrol("Gecis Clası","53",e.toString(),view)
         }
 
     }
@@ -78,7 +78,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         }catch (e:Exception){
             query=Query()
-            query.HataKontrol("Gecis Class - Yeni ProfilToAdmin","81",e.toString())
+            query.HataKontrol("Gecis Class - Yeni ProfilToAdmin","81",e.toString(),view)
         }
     }
     fun AdminPaneliToProfil(view: View){
@@ -87,7 +87,7 @@ class Gecis {
             Navigation.findNavController(view).navigate(action)
         }catch (e:Exception){
             query=Query()
-            query.HataKontrol("Gecis Class - AdminPaneliToProfil","90",e.toString())
+            query.HataKontrol("Gecis Class - AdminPaneliToProfil","90",e.toString(),view)
         }
     }
 
