@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_sigInFragment"
             app:destination="@id/sigInFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_kisilerFragment"
+            app:destination="@id/kisilerFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminPaneliFragment"
@@ -40,6 +43,9 @@
         <action
             android:id="@+id/action_adminPaneliFragment_to_sigInFragment"
             app:destination="@id/sigInFragment" />
+        <action
+            android:id="@+id/action_adminPaneliFragment_to_kisilerFragment"
+            app:destination="@id/kisilerFragment" />
     </fragment>
     <fragment
         android:id="@+id/yeniProfilFragment"
@@ -54,5 +60,18 @@
         android:id="@+id/profilim"
         android:name="com.example.erztask.view.Profilim"
         android:label="fragment_profilim"
-        tools:layout="@layout/fragment_profilim" />
+        tools:layout="@layout/fragment_profilim" >
+        <argument
+            android:name="KisiMail"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/kisilerFragment"
+        android:name="com.example.erztask.view.KisilerFragment"
+        android:label="fragment_kisiler"
+        tools:layout="@layout/fragment_kisiler" >
+        <action
+            android:id="@+id/action_kisilerFragment_to_profilim"
+            app:destination="@id/profilim" />
+    </fragment>
 </navigation>

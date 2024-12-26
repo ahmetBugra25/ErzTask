@@ -1,10 +1,12 @@
 package com.example.erztask.helper
 
+import android.provider.ContactsContract.CommonDataKinds.Email
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.erztask.dbQuery.Query
 import com.example.erztask.view.AdminPaneliFragmentDirections
+import com.example.erztask.view.KisilerFragmentDirections
 import com.example.erztask.view.MainPageFragmentDirections
 import com.example.erztask.view.SigInFragmentDirections
 import com.example.erztask.view.YeniProfilFragmentDirections
@@ -34,7 +36,7 @@ class Gecis {
     }
     fun MainToProfilim(view:View){
         try {
-            val action = MainPageFragmentDirections.actionMainPageFragmentToProfilim()
+            val action = MainPageFragmentDirections.actionMainPageFragmentToProfilim(auth.currentUser!!.email.toString())
             Navigation.findNavController(view).navigate(action)
         } catch (e: Exception) {
             query=Query()
@@ -90,5 +92,8 @@ class Gecis {
             query.HataKontrol("Gecis Class - AdminPaneliToProfil","90",e.toString(),view)
         }
     }
-
+    fun KisilerToProfil(view: View,email: String){
+        val action = KisilerFragmentDirections.actionKisilerFragmentToProfilim(email)
+        Navigation.findNavController(view).navigate(action)
+    }
 }

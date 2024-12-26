@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.erztask.R
@@ -50,9 +51,21 @@ class Profilim : Fragment() {
         BtnEnabledControl(currentUserEmail)
         SpinnerCagrisi(view)
         binding.BtnGeri.setOnClickListener { findNavController().popBackStack() }
-        binding.UyeGuncelleBtn.setOnClickListener {
-
-
+        binding.UyeGuncelleBtn.setOnClickListener {UyeGuncelle(it)}
+    }
+    fun UyeGuncelle(view: View){
+        val email = binding.PeditEmail.text.toString()
+        val tamAd=binding.PeditName.text.toString()
+        val gorevYeri = binding.PilSpinner.selectedItem.toString()
+        val bulunduguTakim=binding.PBulunduguTakim.selectedItem.toString()
+        val unvan=binding.PUnvani.selectedItem.toString()
+        val calismaSekli=binding.PCalismaSekli.selectedItem.toString()
+        query.UyeGuncelle(email,tamAd,gorevYeri,bulunduguTakim,unvan,calismaSekli,view){isSucces->
+            if (isSucces==true){
+                Toast.makeText(requireContext(),"Uye bilgileri güncellendi",Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(requireContext(),"Uye Bilgileri güncellenemedi - Sebebi sisteme kayıt edildi.",Toast.LENGTH_SHORT).show()
+            }
         }
     }
     fun SpinnerCagrisi(view: View){

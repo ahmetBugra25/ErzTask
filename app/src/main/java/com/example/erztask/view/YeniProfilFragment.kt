@@ -60,11 +60,12 @@ class YeniProfilFragment : Fragment() {
         val email=binding.editEmail.text.toString()
         val sifre = binding.editPassword.text.toString()
         val name = binding.editName.text.toString()
+        val gorevYeri=binding.Ilspinner.selectedItem.toString()
         val bulunduguTakim=binding.TakimSpinner.selectedItem.toString()
         val uyeUnvani=binding.UnvanSpinner.selectedItem.toString()
         val uyeCalismaSekli=binding.CalismaSekliSpinner.selectedItem.toString()
          query?.let {
-             query.ProfilOlusturma(email,sifre,name,bulunduguTakim,uyeUnvani,uyeCalismaSekli){isSucces->
+             query.ProfilOlusturma(email,sifre,name,gorevYeri,bulunduguTakim,uyeUnvani,uyeCalismaSekli,view){isSucces->
                  if (isSucces==true){
                      Toast.makeText(requireContext(),"KullanıcıKaydı Başarılı",Toast.LENGTH_SHORT).show()
                      gecis.YeniProfilToAdminPaneli(view)
