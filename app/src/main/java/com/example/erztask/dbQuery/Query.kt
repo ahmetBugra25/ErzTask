@@ -3,9 +3,11 @@ package com.example.erztask.dbQuery
 import android.util.Log
 import android.view.View
 import android.widget.Adapter
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.collection.arrayMapOf
 import com.example.erztask.adapter.KisilerAdapter
+import com.example.erztask.databinding.FragmentProfilimBinding
 import com.example.erztask.model.Uye
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -138,4 +140,48 @@ class Query {
         }
 
     }
+    //////////////////////////////////
+    fun UyeBilgisi(
+        binding:FragmentProfilimBinding,
+        email: String,
+        view: View,
+        callback: (Boolean) -> Unit
+    ){
+        db.collection("Uyeler").whereEqualTo("UyeEmail",email).get().addOnSuccessListener { querySanapshot->
+            if (querySanapshot!=null){
+                val documents = querySanapshot.documents
+                for (document in documents){
+                    binding.PeditName.setText(document.getString("UyeAdSoyad"))
+                    binding.PeditEmail.setText(document.getString("UyeEmail"))
+                    val ilBilgisi =document.getString("GorevYeri")
+                    val adapterIl = binding.PilSpinner.adapter as ArrayAdapter<String>
+                    val position = adapterIl.getPosition(ilBilgisi)
+                    binding.PilSpinner.setSelection(position)
+                    val takimBilgisi=document.getString("BulunduguTakim")
+                    val adapterTakim=binding.PBulunduguTakim.adapter as ArrayAdapter<String>
+                    val takimSonBilgi= adapterTakim.getPosition(takimBilgisi)
+                    binding.PBulunduguTakim.setSelection(takimSonBilgi)
+                    val unvanBilgisi = document.getString("UyeUnvani")
+                    val adapterUnvan = binding.PUnvani.adapter as ArrayAdapter<String>
+                    val unvanSonBilgi = adapterUnvan.getPosition(unvanBilgisi)
+                    binding.PUnvani.setSelection(unvanSonBilgi)
+                    val calismaSekliBilgisi =document.getString("CalismaSekli")
+                    val adapterCalismaSekli = binding.PCalismaSekli.adapter as ArrayAdapter<String>
+                    val sonCalismaBilgisi = adapterCalismaSekli.getPosition(calismaSekliBilgisi)
+                    binding.PCalismaSekli.setSelection(sonCalismaBilgisi)
+                    callback(true)
+                }
+            }else{
+                callback(false)
+                HataKontrol("Query Class-UyeBilgisi","175","Uye bilgileri bulunamadı.",view)
+            }
+
+        }.addOnFailureListener { exception->
+            callback(false)
+            HataKontrol("Query Class - Uye Bilgisi","180",exception.localizedMessage,view)
+        }
+
+    }
+    ////////////////////////////
+
 }

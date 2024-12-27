@@ -48,10 +48,25 @@ class Profilim : Fragment() {
         spinner = SpinnerHelper()
         query = Query()
         val currentUserEmail = auth.currentUser!!.email.toString()
+        arguments?.let {
+            val kisiEmail=ProfilimArgs.fromBundle(it).KisiMail.toString()
+            UyeBilgileriCek(view,kisiEmail)
+        }
+
         BtnEnabledControl(currentUserEmail)
         SpinnerCagrisi(view)
         binding.BtnGeri.setOnClickListener { findNavController().popBackStack() }
         binding.UyeGuncelleBtn.setOnClickListener {UyeGuncelle(it)}
+    }
+    fun UyeBilgileriCek(view: View,kisiEmail:String){
+        query.UyeBilgisi(binding,kisiEmail,view){ isSucces->
+            if (isSucces==true){
+                Toast.makeText(requireContext(),"Bilgileriniz yükleniyor.",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(requireContext(),"Bilgileriniz yüklenirken hata oluştu.",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     fun UyeGuncelle(view: View){
         val email = binding.PeditEmail.text.toString()
@@ -63,6 +78,7 @@ class Profilim : Fragment() {
         query.UyeGuncelle(email,tamAd,gorevYeri,bulunduguTakim,unvan,calismaSekli,view){isSucces->
             if (isSucces==true){
                 Toast.makeText(requireContext(),"Uye bilgileri güncellendi",Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
             }else{
                 Toast.makeText(requireContext(),"Uye Bilgileri güncellenemedi - Sebebi sisteme kayıt edildi.",Toast.LENGTH_SHORT).show()
             }

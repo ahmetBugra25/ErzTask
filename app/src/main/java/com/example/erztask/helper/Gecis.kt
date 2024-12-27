@@ -44,6 +44,8 @@ class Gecis {
         }
     }
     fun MainToKisiler(view: View){
+        val action = MainPageFragmentDirections.actionMainPageFragmentToKisilerFragment()
+        Navigation.findNavController(view).navigate(action)
     }
     fun MainToBitenGorevler(view: View){
     }
@@ -94,6 +96,10 @@ class Gecis {
     }
     fun KisilerToProfil(view: View,email: String){
         val action = KisilerFragmentDirections.actionKisilerFragmentToProfilim(email)
+        Navigation.findNavController(view).navigate(action)
+    }
+    fun AdminPaneliToKisiler(view: View){
+        val action=AdminPaneliFragmentDirections.actionAdminPaneliFragmentToKisilerFragment()
         Navigation.findNavController(view).navigate(action)
     }
 }

@@ -38,17 +38,18 @@ class KisilerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        KisileriGetir(view,uyeList,KisilerAdapter!!)
+
         KisilerAdapter = KisilerAdapter(uyeList)
         binding.recylerViewKisiler.layoutManager = LinearLayoutManager(requireContext())
         binding.recylerViewKisiler.adapter = KisilerAdapter
+        KisileriGetir(view,uyeList,KisilerAdapter!!)
         binding.GeriButton.setOnClickListener { findNavController().popBackStack() }
     }
     fun KisileriGetir(view: View,uyeList:ArrayList<Uye>,adapter: KisilerAdapter){
        query=Query()
         query.UyeBilgileriniGetir(view,uyeList,adapter){isSucces->
             if (isSucces==true){
-               Toast.makeText(requireContext(),"Kisiler Yükleniyor...",Toast.LENGTH_SHORT).show()
+               println("Basarılı")
             }else{
                 Toast.makeText(requireContext(),"Kisiler Yüklenirken Hata Oluştu.Lütfen Daha sonra tekrar deneyiniz.",Toast.LENGTH_SHORT).show()
             }
