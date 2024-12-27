@@ -7,10 +7,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.collection.arrayMapOf
 import com.example.erztask.adapter.KisilerAdapter
+import com.example.erztask.adapter.MesajAdapter
 import com.example.erztask.databinding.FragmentProfilimBinding
+import com.example.erztask.model.Mesaj
 import com.example.erztask.model.Uye
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.sql.Timestamp
 
 
 class Query {
@@ -183,5 +186,44 @@ class Query {
 
     }
     ////////////////////////////
+    fun MesajOlustur(
+        view: View,
+        mesajYazanEmail:String,
+        mesajText:String,
+        callback: (Boolean) -> Unit
+    ){
+        val mesajHashMap= hashMapOf<String,Any>()
+        mesajHashMap.put("MesajYazanEmail",mesajYazanEmail)
+        mesajHashMap.put("Mesaj",mesajText)
+        mesajHashMap.put("MesajTarihi",com.google.firebase.Timestamp.now())
+        db.collection("Mesajlar").add(mesajHashMap).addOnSuccessListener { documentReferance->
+            callback(true)
+        }.addOnFailureListener { exception->
+            callback(false)
+            HataKontrol("Query Class - Mesaj Olustur","199","Mesaj Oluşturulamıyor: "+exception.localizedMessage,view)
+        }
+    }
+    fun MesajlariGetir(view: View,MesajList:ArrayList<Mesaj>,adapter: MesajAdapter,callback: (Boolean) -> Unit){
+        db.collection("Mesajlar").get().addOnSuccessListener { documentReferance->
+            if (documentReferance!=null){
+                val documents = documentReferance.documents
+                MesajList.clear()
+                for (document in documents){
+                 val mesajYazanEmail=document.getString("MesajYazanEmail")
+                 val yazilanMesaj = document.getString("Mesaj")
+                 val mesajTarihi = document.getTimestamp("MesajTarihi")
+                 val newMesaj = Mesaj(mesajYazanEmail!!,yazilanMesaj!!,mesajTarihi!!)
+                 MesajList.add(newMesaj)
+                 callback(true)
+                }
+                adapter?.notifyDataSetChanged()
+            }else{
+                callback(false)
+            }
+        }.addOnFailureListener { exception->
+            callback(false)
 
+        }
+
+    }
 }

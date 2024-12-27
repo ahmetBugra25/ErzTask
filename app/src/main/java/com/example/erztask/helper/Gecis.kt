@@ -52,7 +52,8 @@ class Gecis {
     fun MainToTumGorevler(view: View){
     }
     fun MainToSohbetOdasi(view: View){
-
+         val action = MainPageFragmentDirections.actionMainPageFragmentToSohbetFragment()
+        Navigation.findNavController(view).navigate(action)
     }
     fun MainappQuit(view: View){
         try {
@@ -100,6 +101,10 @@ class Gecis {
     }
     fun AdminPaneliToKisiler(view: View){
         val action=AdminPaneliFragmentDirections.actionAdminPaneliFragmentToKisilerFragment()
+        Navigation.findNavController(view).navigate(action)
+    }
+    fun AdminPaneliToSohbet(view: View){
+        val action= AdminPaneliFragmentDirections.actionAdminPaneliFragmentToSohbetFragment()
         Navigation.findNavController(view).navigate(action)
     }
 }

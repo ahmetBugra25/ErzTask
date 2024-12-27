@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_kisilerFragment"
             app:destination="@id/kisilerFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_sohbetFragment"
+            app:destination="@id/sohbetFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminPaneliFragment"
@@ -46,6 +49,9 @@
         <action
             android:id="@+id/action_adminPaneliFragment_to_kisilerFragment"
             app:destination="@id/kisilerFragment" />
+        <action
+            android:id="@+id/action_adminPaneliFragment_to_sohbetFragment"
+            app:destination="@id/sohbetFragment" />
     </fragment>
     <fragment
         android:id="@+id/yeniProfilFragment"
@@ -74,4 +80,9 @@
             android:id="@+id/action_kisilerFragment_to_profilim"
             app:destination="@id/profilim" />
     </fragment>
+    <fragment
+        android:id="@+id/sohbetFragment"
+        android:name="com.example.erztask.view.SohbetFragment"
+        android:label="fragment_sohbet"
+        tools:layout="@layout/fragment_sohbet" />
 </navigation>
