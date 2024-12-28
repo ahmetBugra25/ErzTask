@@ -34,6 +34,12 @@
         <action
             android:id="@+id/action_mainPageFragment_to_sohbetFragment"
             app:destination="@id/sohbetFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_gorevOlusturFragment"
+            app:destination="@id/gorevOlusturFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_bitenGorevlerFragment"
+            app:destination="@id/bitenGorevlerFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminPaneliFragment"
@@ -52,6 +58,9 @@
         <action
             android:id="@+id/action_adminPaneliFragment_to_sohbetFragment"
             app:destination="@id/sohbetFragment" />
+        <action
+            android:id="@+id/action_adminPaneliFragment_to_bitenGorevlerFragment"
+            app:destination="@id/bitenGorevlerFragment" />
     </fragment>
     <fragment
         android:id="@+id/yeniProfilFragment"
@@ -85,4 +94,21 @@
         android:name="com.example.erztask.view.SohbetFragment"
         android:label="fragment_sohbet"
         tools:layout="@layout/fragment_sohbet" />
+    <fragment
+        android:id="@+id/gorevOlusturFragment"
+        android:name="com.example.erztask.view.GorevOlusturFragment"
+        android:label="fragment_gorev_olustur"
+        tools:layout="@layout/fragment_gorev_olustur" >
+        <argument
+            android:name="UnvanBilgisi"
+            app:argType="string" />
+        <argument
+            android:name="adSoyadBilgisi"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/bitenGorevlerFragment"
+        android:name="com.example.erztask.view.BitenGorevlerFragment"
+        android:label="fragment_biten_gorevler"
+        tools:layout="@layout/fragment_biten_gorevler" />
 </navigation>

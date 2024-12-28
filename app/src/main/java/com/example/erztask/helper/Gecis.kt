@@ -44,16 +44,33 @@ class Gecis {
         }
     }
     fun MainToKisiler(view: View){
-        val action = MainPageFragmentDirections.actionMainPageFragmentToKisilerFragment()
-        Navigation.findNavController(view).navigate(action)
+        try {
+            val action = MainPageFragmentDirections.actionMainPageFragmentToKisilerFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - MainToKisiler","52",e.localizedMessage,view)
+        }
     }
     fun MainToBitenGorevler(view: View){
+        try {
+            val action = MainPageFragmentDirections.actionMainPageFragmentToBitenGorevlerFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - MainToBitenGorevler","61",e.localizedMessage,view)
+        }
     }
     fun MainToTumGorevler(view: View){
     }
     fun MainToSohbetOdasi(view: View){
-         val action = MainPageFragmentDirections.actionMainPageFragmentToSohbetFragment()
-        Navigation.findNavController(view).navigate(action)
+        try {
+            val action = MainPageFragmentDirections.actionMainPageFragmentToSohbetFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - MainToSohbetOdasi","65",e.localizedMessage,view)
+        }
     }
     fun MainappQuit(view: View){
         try {
@@ -96,15 +113,50 @@ class Gecis {
         }
     }
     fun KisilerToProfil(view: View,email: String){
-        val action = KisilerFragmentDirections.actionKisilerFragmentToProfilim(email)
-        Navigation.findNavController(view).navigate(action)
+        try {
+            val action = KisilerFragmentDirections.actionKisilerFragmentToProfilim(email)
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - KisilerToProfil","114",e.localizedMessage,view)
+        }
+
     }
     fun AdminPaneliToKisiler(view: View){
-        val action=AdminPaneliFragmentDirections.actionAdminPaneliFragmentToKisilerFragment()
-        Navigation.findNavController(view).navigate(action)
+        try {
+            val action=AdminPaneliFragmentDirections.actionAdminPaneliFragmentToKisilerFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - AdminPaneliToKisiler","124",e.localizedMessage,view)
+        }
     }
     fun AdminPaneliToSohbet(view: View){
-        val action= AdminPaneliFragmentDirections.actionAdminPaneliFragmentToSohbetFragment()
-        Navigation.findNavController(view).navigate(action)
+        try {
+            val action= AdminPaneliFragmentDirections.actionAdminPaneliFragmentToSohbetFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - AdminPaneliToSohbet","138",e.localizedMessage,view)
+        }
+    }
+    fun MainToGorevOlustur(view: View,unvanBilgisi:String,adSoyad:String){
+        try {
+            val action =MainPageFragmentDirections.actionMainPageFragmentToGorevOlusturFragment(unvanBilgisi,adSoyad)
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - MainToGorevOlustur","142",e.localizedMessage,view)
+        }
+
+    }
+    fun AdminToBitenGorevler(view: View){
+        try {
+            val action = AdminPaneliFragmentDirections.actionAdminPaneliFragmentToBitenGorevlerFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - AdminToBitenGorevler","159",e.localizedMessage,view)
+        }
     }
 }

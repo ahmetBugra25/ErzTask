@@ -39,6 +39,7 @@ class AdminPaneliFragment : Fragment() {
         binding.adminCKSYap.setOnClickListener { gecis.AdminAppQuit(view) }
         binding.adminKisiler.setOnClickListener { gecis.AdminPaneliToKisiler(view) }
         binding.adminSohbet.setOnClickListener { gecis.AdminPaneliToSohbet(view) }
+        binding.adminBitenGorev.setOnClickListener { gecis.AdminToBitenGorevler(view) }
     }
 
     override fun onDestroyView() {

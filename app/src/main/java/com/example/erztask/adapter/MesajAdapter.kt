@@ -19,7 +19,7 @@ class MesajAdapter(private var mesajList:ArrayList<Mesaj>): RecyclerView.Adapter
 
     init {
         // Tarih bilgisine göre listeyi sıralıyoruz.
-        mesajList.sortBy { it.MesajDate} // eventDate, sıralama için kullanılacak özellik
+        mesajList.sortByDescending { it.MesajDate} // eventDate, sıralama için kullanılacak özellik
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MesajlarViewHolder {
