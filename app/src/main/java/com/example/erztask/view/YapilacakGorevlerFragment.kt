@@ -10,16 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.erztask.R
 import com.example.erztask.adapter.GorevAdapter
-import com.example.erztask.adapter.KisilerAdapter
 import com.example.erztask.databinding.FragmentBitenGorevlerBinding
-import com.example.erztask.databinding.FragmentKisilerBinding
+import com.example.erztask.databinding.FragmentYapilacakGorevlerBinding
 import com.example.erztask.dbQuery.Query
 import com.example.erztask.model.Gorev
-import com.example.erztask.model.Uye
 
 
-class BitenGorevlerFragment : Fragment() {
-    private var _binding: FragmentBitenGorevlerBinding? = null
+class YapilacakGorevlerFragment : Fragment() {
+    private var _binding: FragmentYapilacakGorevlerBinding? = null
     private val binding get() = _binding!!
     private var GorevAdapter: GorevAdapter?=null
     private val gorevList:ArrayList<Gorev> = arrayListOf()
@@ -34,25 +32,24 @@ class BitenGorevlerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBitenGorevlerBinding.inflate(inflater, container, false)
+        _binding = FragmentYapilacakGorevlerBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         GorevAdapter = GorevAdapter(gorevList)
-        binding.recylerBitenGorevler.layoutManager = LinearLayoutManager(requireContext())
-        binding.recylerBitenGorevler.adapter = GorevAdapter
-        GorevleriGetir(view,gorevList,GorevAdapter!!)
-        binding.BitenGorevGeriButton.setOnClickListener { findNavController().popBackStack() }
+        binding.recylerYapilacaklar.layoutManager = LinearLayoutManager(requireContext())
+        binding.recylerYapilacaklar.adapter = GorevAdapter
+        Gorevler(view,gorevList,GorevAdapter!!)
+        binding.YapilacaklarGeriButton.setOnClickListener { findNavController().popBackStack() }
 
     }
-    fun GorevleriGetir(view: View,gorevList:ArrayList<Gorev>,adapter:GorevAdapter){
+    fun Gorevler(view: View,gorevList:ArrayList<Gorev>,adapter:GorevAdapter){
         query=Query()
-        query.BitenGorevler(view,gorevList,adapter){isSucces->
+        query.YapilacakGorevler(view,gorevList,adapter){isSucces->
             if (isSucces!=true){
-                Toast.makeText(requireContext(),"Gorevler yüklenemiyor...",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Gorevler yüklenemiyor...", Toast.LENGTH_SHORT).show()
             }
 
         }

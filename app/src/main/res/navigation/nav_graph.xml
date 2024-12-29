@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_bitenGorevlerFragment"
             app:destination="@id/bitenGorevlerFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_yapilacakGorevlerFragment"
+            app:destination="@id/yapilacakGorevlerFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminPaneliFragment"
@@ -61,6 +64,9 @@
         <action
             android:id="@+id/action_adminPaneliFragment_to_bitenGorevlerFragment"
             app:destination="@id/bitenGorevlerFragment" />
+        <action
+            android:id="@+id/action_adminPaneliFragment_to_yapilacakGorevlerFragment"
+            app:destination="@id/yapilacakGorevlerFragment" />
     </fragment>
     <fragment
         android:id="@+id/yeniProfilFragment"
@@ -110,5 +116,27 @@
         android:id="@+id/bitenGorevlerFragment"
         android:name="com.example.erztask.view.BitenGorevlerFragment"
         android:label="fragment_biten_gorevler"
-        tools:layout="@layout/fragment_biten_gorevler" />
+        tools:layout="@layout/fragment_biten_gorevler" >
+        <action
+            android:id="@+id/action_bitenGorevlerFragment_to_gorevDetayFragment"
+            app:destination="@id/gorevDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yapilacakGorevlerFragment"
+        android:name="com.example.erztask.view.YapilacakGorevlerFragment"
+        android:label="fragment_yapilacak_gorevler"
+        tools:layout="@layout/fragment_yapilacak_gorevler" >
+        <action
+            android:id="@+id/action_yapilacakGorevlerFragment_to_gorevDetayFragment"
+            app:destination="@id/gorevDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gorevDetayFragment"
+        android:name="com.example.erztask.view.GorevDetayFragment"
+        android:label="fragment_gorev_detay"
+        tools:layout="@layout/fragment_gorev_detay" >
+        <argument
+            android:name="documentID"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -6,9 +6,13 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.erztask.dbQuery.Query
 import com.example.erztask.view.AdminPaneliFragmentDirections
+import com.example.erztask.view.BitenGorevlerFragment
+import com.example.erztask.view.BitenGorevlerFragmentDirections
 import com.example.erztask.view.KisilerFragmentDirections
 import com.example.erztask.view.MainPageFragmentDirections
 import com.example.erztask.view.SigInFragmentDirections
+import com.example.erztask.view.YapilacakGorevlerFragment
+import com.example.erztask.view.YapilacakGorevlerFragmentDirections
 import com.example.erztask.view.YeniProfilFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 
@@ -62,6 +66,14 @@ class Gecis {
         }
     }
     fun MainToTumGorevler(view: View){
+        try {
+            val  action = MainPageFragmentDirections.actionMainPageFragmentToYapilacakGorevlerFragment()
+            Navigation.findNavController(view).navigate(action)
+        }catch (e:Exception){
+            query=Query()
+            query.HataKontrol("Gecis Class - MainToTumGorevler","69",e.localizedMessage,view)
+        }
+
     }
     fun MainToSohbetOdasi(view: View){
         try {
@@ -158,5 +170,17 @@ class Gecis {
             query=Query()
             query.HataKontrol("Gecis Class - AdminToBitenGorevler","159",e.localizedMessage,view)
         }
+    }
+    fun AdminToTumGorevler(view: View){
+        val action = AdminPaneliFragmentDirections.actionAdminPaneliFragmentToYapilacakGorevlerFragment()
+        Navigation.findNavController(view).navigate(action)
+    }
+    fun YapilacaklarToGorevDetay(view: View,documentID:String){
+        val action = YapilacakGorevlerFragmentDirections.actionYapilacakGorevlerFragmentToGorevDetayFragment(documentID)
+        Navigation.findNavController(view).navigate(action)
+    }
+    fun BitenGorevlerToGorevDetay(view: View,documentID: String){
+        val action = BitenGorevlerFragmentDirections.actionBitenGorevlerFragmentToGorevDetayFragment(documentID)
+        Navigation.findNavController(view).navigate(action)
     }
 }
