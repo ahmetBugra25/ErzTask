@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.erztask.R
 import com.example.erztask.databinding.FragmentBitenGorevlerBinding
 import com.example.erztask.databinding.FragmentGorevDetayBinding
@@ -36,7 +37,10 @@ class GorevDetayFragment : Fragment() {
         arguments?.let {
             val documentID=GorevDetayFragmentArgs.fromBundle(it).documentID.toString()
             GorevVerileriniCek(view,documentID)
+            binding.GorevTamamlaBtn.setOnClickListener { GoreviTamamla(it,documentID) }
         }
+
+        binding.GorevDetayGeriBtn.setOnClickListener { findNavController().popBackStack() }
     }
     fun GorevVerileriniCek(view: View,documentID:String){
         query=Query()
@@ -47,6 +51,20 @@ class GorevDetayFragment : Fragment() {
                 Toast.makeText(requireContext(),"Gorev Detayları Yüklenirken Hata oldu.",Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    fun GoreviTamamla(view: View,documentID:String){
+        query=Query()
+        query.GorevTamamla(view, documentID,binding){isSucces->
+            if (isSucces==true){
+                Toast.makeText(requireContext(),"Gorev Tamamlandı.",Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+            }else{
+                Toast.makeText(requireContext(),"Gorev Tamamlanamadı. Lütfen daha sonra tekrar deneyiniz.",Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+            }
+
+        }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

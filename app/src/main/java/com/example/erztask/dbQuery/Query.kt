@@ -399,6 +399,7 @@ class Query {
     /////////////////////////
     fun GorevDetayCek(view: View,binding: FragmentGorevDetayBinding,documentID:String,callback: (Boolean) -> Unit){
         try {
+            spinnerHelper= SpinnerHelper()
             db.collection("Gorevler").document(documentID).get().addOnSuccessListener { documentSnapshot->
                  if (documentSnapshot != null){
                      binding.GorevVerenIsim.setText(documentSnapshot.getString("GorevOlusturanIsim"))
@@ -426,5 +427,26 @@ class Query {
         }
 
     }
+    ///////////
+    fun GorevTamamla(view: View,documentID: String,binding: FragmentGorevDetayBinding,callback: (Boolean) -> Unit){
+        try {
 
+            db.collection("Gorevler").document(documentID).get().addOnSuccessListener { documentReferance->
+                if (documentReferance!= null){
+                    db.collection("Gorevler")
+                        .document(documentID)
+                        .update("GorevTamamlanmaDurumu",true.toString())
+                        .addOnSuccessListener { document->
+                            callback(true)
+                        }.addOnFailureListener { exception->
+                            callback(false)
+                            HataKontrol("Query Class -GorevTamamla","430",exception.localizedMessage,view)
+                        }
+                }
+            }
+        }catch (e:Exception){
+             callback(false)
+             HataKontrol("Query Class -GorevTamamla","430",e.localizedMessage,view)
+        }
+    }
 }

@@ -42,6 +42,10 @@ class SigInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gecis=Gecis()
+        val currentUser = auth.currentUser
+        if (currentUser!= null){
+           gecis.SignInToMain(view)
+        }
         binding.GirisYap.setOnClickListener { GirisYap(it) }
 
     }
