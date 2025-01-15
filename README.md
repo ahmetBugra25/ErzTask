@@ -41,18 +41,7 @@ ViewModel, UI ile veri kaynağı arasındaki iletişimi yönetirken, LiveData il
 Repository Pattern:
 Veriler, Repository deseni kullanılarak yönetilmiştir ve veri kaynaklarının yönetimi soyutlanmıştır.
 
-Kullanım
-Görev Ekleme:
-Ana menüdeki "Yeni Görev Ekle" butonuna basarak yeni bir görev ekleyebilirsiniz.
-
-Görev Güncelleme:
-Görev listesinde bir göreve tıkladığınızda, görevi düzenleyebilir veya silebilirsiniz.
-
-Görev Durumu:
-Görevleri tamamlandı olarak işaretleyebilir ve bu durumları takip edebilirsiniz.
-
 Proje Mimarisi
-
 Model: Veri sınıflarını ve iş mantığını içerir.
 ViewModel: Verilerin hazırlanmasından ve UI ile veri kaynağı arasındaki iletişimden sorumludur.
 View: Kullanıcı arayüzünü temsil eder ve kullanıcı girişlerini işleyerek ViewModel’e iletir.
